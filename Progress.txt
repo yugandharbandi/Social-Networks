@@ -1,0 +1,13 @@
+Done:
+1. Checked that the order of shortest distance we get from a graph doesn't change much even in the sub-graph.
+2. Got a basic idea on solving the 3rd problem listed in the TODO.
+3. Built a simple prototype indicating the final user-interface.
+4. Built an app to collect data from users.
+
+TODO:
+1. Building a Friendship graph
+2. Getting the details of list of products bought by the nodes in the graph
+3. Designing a system that can guarentee that decryption is not possible to some level. This system should deal with dynamic data.
+4. Secure quering to the back-end
+5. Designing an efficient algorithm to calculate number of hops.
+6. Design a user-interface
