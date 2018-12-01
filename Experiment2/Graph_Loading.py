@@ -33,6 +33,109 @@ def Caluculte_avg_distance_mobile(M1,M2,M3,M4):
 	print ("\n")
 
 
+
+def Likeliness_mobile(M1,M2,M3,M4,G):
+	Likecount_for_mobile = [0,0,0,0]
+	for k in range(0,4):
+		if(k == 0):
+			M1 = M1
+		elif (k==1):
+			M1 = M2
+		elif (k ==2):
+			M1 = M3
+		elif (k==3):
+			M1 = M4
+		else:
+			break
+		for i in range(0,len(M1)):
+			L = [-1,0,0,0,0]
+			for j in G.neighbors(M1[i]):
+				if(G.node[j]['mobile'] == 1):
+					L[1] = L[1]+1
+				elif (G.node[j]['mobile'] == 2):
+					L[2] = L[2]+1
+				elif (G.node[j]['mobile'] == 3):
+					L[3] = L[3]+1
+				elif (G.node[j]['mobile'] == 4):
+					L[4] = L[4]+1
+			for s in range(0,4):
+				m = max(L)
+				if(L.index(m) == G.node[M1[i]]['mobile']):
+					Likecount_for_mobile[s] = Likecount_for_mobile[s]+1
+					break;
+				else:
+					L[L.index(m)] = -2
+
+	return Likecount_for_mobile
+			
+
+def Likeliness_shoes(M1,M2,M3,M4,G):
+	Likecount_for_shoes  = [0,0,0,0]
+	for k in range(0,4):
+		if(k == 0):
+			M1 = M1
+		elif (k==1):
+			M1 = M2
+		elif (k ==2):
+			M1 = M3
+		elif (k==3):
+			M1 = M4
+		else:
+			break
+		for i in range(0,len(M1)):
+			L = [-1,0,0,0,0]
+			for j in G.neighbors(M1[i]):
+				if(G.node[j]['shoes'] == 1):
+					L[1] = L[1]+1
+				elif (G.node[j]['shoes'] == 2):
+					L[2] = L[2]+1
+				elif (G.node[j]['shoes'] == 3):
+					L[3] = L[3]+1
+				elif (G.node[j]['shoes'] == 4):
+					L[4] = L[4]+1
+			for s in range(0,4):
+				m = max(L)
+				if(L.index(m) == G.node[M1[i]]['shoes']):
+					Likecount_for_shoes[s] = Likecount_for_shoes[s]+1
+					break;
+				else:
+					L[L.index(m)] = -2
+	return Likecount_for_shoes
+
+
+def Likeliness_cars(M1,M2,M3,G):
+	Likecount_for_cars = [0,0,0]
+	for k in range(0,4):
+		if(k == 0):
+			M1 = M1
+		elif (k==1):
+			M1 = M2
+		elif (k ==2):
+			M1 = M3
+		else:
+			break
+		for i in range(0,len(M1)):
+			L = [-1,0,0,0,0]
+			for j in G.neighbors(M1[i]):
+				if(G.node[j]['car'] == 1):
+					L[1] = L[1]+1
+				elif (G.node[j]['car'] == 2):
+					L[2] = L[2]+1
+				elif (G.node[j]['car'] == 3):
+					L[3] = L[3]+1
+			for s in range(0,3):
+				m = max(L)
+				if(L.index(m) == G.node[M1[i]]['car']):
+					Likecount_for_cars[s] = Likecount_for_cars[s]+1
+					break;
+				else:
+					L[L.index(m)] = -2
+	return Likecount_for_cars
+
+
+
+
+
 G = nx.Graph()
 
 nodes = []
@@ -105,6 +208,23 @@ for i in car:
 	elif(car[i] == 3):
 		C3.append(i)
 
+""" Do I like what majority of my friends Like """
+
+Likecount_for_mobile = 0
+Likecount_for_shoes = 0
+Likecount_for_cars = 0
+Likecount_for_mobile = Likeliness_mobile(M1,M2,M3,M4,G)
+Likecount_for_shoes = Likeliness_shoes(S1,S2,S3,S4,G)
+Likecount_for_cars = Likeliness_cars(C1,C2,C3,G)
+print("Like Count ",Likecount_for_mobile,Likecount_for_shoes,Likecount_for_cars)
+Total_responses = len(M1)+len(M2)+len(M3)+len(M4)
+#print("Unlike Count ",Total_responses-Likecount_for_mobile,Total_responses-Likecount_for_shoes,Total_responses-Likecount_for_cars)
+
+
+
+
+
+
 """
 Caluculte_avg_distance_mobile(M1,M2,M3,M4)
 Caluculte_avg_distance_mobile(M2,M1,M3,M4)
@@ -117,7 +237,7 @@ Caluculte_avg_distance_mobile(S3,S1,S3,S4)
 Caluculte_avg_distance_mobile(S4,S1,S3,S4)
 """
 
-
+"""
 color_map = []
 for node in G:
     if node in C1:
@@ -128,10 +248,10 @@ for node in G:
     	color_map.append('orange')
     else:
     	color_map.append('black')   
+"""
 
-
-
+"""
 nx.draw(G,node_color = color_map,with_labels = True)
 plt.show()
-
+"""
 
